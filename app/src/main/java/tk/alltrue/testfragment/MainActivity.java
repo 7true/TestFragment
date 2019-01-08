@@ -15,7 +15,6 @@ public class MainActivity extends AppCompatActivity implements Fragment1.OnSelec
     private ImageView imCat;
     private TextView tCat;
     private int mText;
-
     private boolean mIsDynamic;
 
     @Override
