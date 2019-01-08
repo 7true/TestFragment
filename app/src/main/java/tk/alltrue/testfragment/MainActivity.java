@@ -1,5 +1,6 @@
 package tk.alltrue.testfragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
@@ -16,26 +17,6 @@ public class MainActivity extends AppCompatActivity implements Fragment1.OnSelec
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-/*
-        imCat = (ImageView) findViewById(R.id.imageView);
-        tCat = findViewById(R.id.textView);
-    }
-
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.button1:
-                imCat.setImageResource(R.drawable.ryzh);
-                tCat.setText("Ryzhik");
-                break;
-            case R.id.button2:
-                imCat.setImageResource(R.drawable.bars);
-                tCat.setText("Barsik");
-                break;
-            case R.id.button3:
-                imCat.setImageResource(R.drawable.murz);
-                tCat.setText("Murzik");
-                break;
-        }*/
     }
 
     @Override
@@ -44,7 +25,11 @@ public class MainActivity extends AppCompatActivity implements Fragment1.OnSelec
 
         Fragment2 fragment2 = (Fragment2) fragmentManager.findFragmentById(R.id.fragment2);
 
-        if(fragment2 != null) {
+        if (fragment2 == null || !fragment2.isVisible()) {
+            Intent intent = new Intent(this, SecondActivity.class);
+            intent.putExtra("buttonIndex", buttonIndex);
+            startActivity(intent);
+        } else {
             fragment2.setDescription(buttonIndex);
         }
     }

@@ -50,9 +50,6 @@ public class Fragment1 extends Fragment implements View.OnClickListener {
     public void onClick(View view) {
         int buttonIndex = translateIdToIndex(view.getId());
 
-//        Toast.makeText(getActivity(), String.valueOf(buttonIndex),
-//                Toast.LENGTH_SHORT).show();
-
         OnSelectedButtonListener listener = (OnSelectedButtonListener) getActivity();
         listener.onButtonSelected(buttonIndex);
     }
