@@ -40,15 +40,21 @@ public class MainActivity extends AppCompatActivity implements Fragment1.OnSelec
     @Override
     public void onButtonSelected(int buttonIndex) {
         FragmentManager fragmentManager = getSupportFragmentManager();
+        Fragment2 fragment2;
 
-        Fragment2 fragment2 = (Fragment2) fragmentManager
-                .findFragmentById(R.id.fragment2);
-
-        if (fragment2 == null || !fragment2.isVisible()) {
-            Intent intent = new Intent(this, SecondActivity.class);
-            intent.putExtra("buttonIndex", buttonIndex);
-            startActivity(intent);
+        if(mIsDynamic) {
+            FragmentTransaction ft = fragmentManager.beginTransaction();
+            fragment2 = new Fragment2();
+            Bundle args = new Bundle();
+            args.putInt(Fragment2.BUTTON_INDEX, buttonIndex);
+            fragment2.setArguments(args);
+            ft.replace(R.id.content, fragment2, "fragment2");
+            ft.addToBackStack(null);
+            ft.setCustomAnimations(
+                    android.R.animator.fade_in, android.R.animator.fade_out);
+            ft.commit();
         } else {
+            fragment2 = (Fragment2) fragmentManager.findFragmentById(R.id.fragment2);
             fragment2.setDescription(buttonIndex);
         }
     }
