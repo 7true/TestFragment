@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">TestFragment</string>
+    <string-array name="cats">
+        <item>Simple cat</item>
+        <item>Ryzhik - redhead cat</item>
+        <item>Barsik - bars cat</item>
+        <item>Murzik - murmur cat</item>
+    </string-array>
 </resources>
